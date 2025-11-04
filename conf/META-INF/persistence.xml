@@ -212,16 +212,23 @@
         <class>org.omg.sysml.record.impl.RecordImpl</class>
 
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/sysml2"/>
-            <property name="javax.persistence.jdbc.user" value="postgres"/>
-            <property name="javax.persistence.jdbc.password" value="mysecretpassword"/>
-
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
-
-            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.format_sql" value="true"/>
+            
+            <!-- HikariCP connection provider -->
+            <property name="hibernate.connection.provider_class" value="org.hibernate.hikaricp.internal.HikariCPConnectionProvider"/>
+            
+            <!-- Database connection settings -->
+            <property name="hibernate.hikari.jdbcUrl" value="jdbc:postgresql://localhost:5432/sysml2"/>
+            <property name="hibernate.hikari.username" value="postgres"/>
+            <property name="hibernate.hikari.password" value="mysecretpassword"/>
+            <property name="hibernate.hikari.driverClassName" value="org.postgresql.Driver"/>
+            
+            <!-- HikariCP pool settings -->
+            <property name="hibernate.hikari.minimumIdle" value="5"/>
+            <property name="hibernate.hikari.maximumPoolSize" value="20"/>
+            <property name="hibernate.hikari.idleTimeout" value="30000"/>
+            <property name="hibernate.hikari.connectionTimeout" value="10000"/>
         </properties>
     </persistence-unit>
 </persistence>
